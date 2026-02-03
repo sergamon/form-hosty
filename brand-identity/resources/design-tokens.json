@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "brand_name": "HOSTY GROUP",
+    "description": "Tokens de diseño basados en el Manual de Marca v1.0."
+  },
+  "colors": {
+    "primary": {
+      "DEFAULT": "#0A2A54",
+      "description": "Azul Hosty - Color Primario Corporativo",
+      "foreground": "#FFFFFF"
+    },
+    "secondary": {
+      "DEFAULT": "#FFFFFF",
+      "description": "Blanco Puro - Fondo principal y espacios limpios",
+      "foreground": "#333333"
+    },
+    "accent": {
+      "warm": "#F9F3EC",
+      "premium": "#D3B574",
+      "description": "Warm para fondos cálidos, Premium (Dorado) para detalles de lujo"
+    },
+    "text": {
+      "DEFAULT": "#333333",
+      "light": "#FFFFFF"
+    },
+    "functional": {
+      "success": "#25D366",
+      "description": "Verde funcional para estados de éxito"
+    }
+  },
+  "typography": {
+    "font_family_headings": ["Poppins", "sans-serif"],
+    "font_family_body": ["Open Sans", "sans-serif"],
+    "weights": {
+      "body_regular": "400",
+      "body_bold": "600",
+      "heading_semibold": "600",
+      "heading_bold": "700"
+    }
+  },
+  "ui": {
+    "border_radius_default": "0.5rem",
+    "border_radius_small": "0.25rem",
+    "spacing_base_unit": "4px"
+  }
+}
