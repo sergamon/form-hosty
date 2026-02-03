@@ -3,15 +3,8 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { ClientProviders } from '@/components/client-providers';
 
-// FIX: Remove broken localStorage polyfill/mock from environment
-if (typeof global !== 'undefined' && (global as any).localStorage) {
-  try {
-    delete (global as any).localStorage;
-    console.log('SERVER FIX: Deleted broken global.localStorage');
-  } catch (e) {
-    console.error('SERVER FIX: Failed to delete global.localStorage', e);
-  }
-}
+// Main Root Layout
+
 
 export const metadata: Metadata = {
   title: 'Registro y Autorización de Ingreso',
