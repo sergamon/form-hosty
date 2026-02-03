@@ -4,6 +4,16 @@ import { cn } from '@/lib/utils';
 import { ClientProviders } from '@/components/client-providers';
 
 // Main Root Layout
+if (typeof global !== 'undefined' && (global as any).localStorage && typeof (global as any).localStorage.getItem !== 'function') {
+  try {
+    delete (global as any).localStorage;
+    console.warn('SERVER FIX: Deleted broken global.localStorage mock');
+  } catch (e) {
+    // Fallback if delete fails
+    (global as any).localStorage = undefined;
+  }
+}
+
 
 
 export const metadata: Metadata = {

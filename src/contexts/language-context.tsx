@@ -15,19 +15,27 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [lang, setLang] = useState<Language>('es');
 
   useEffect(() => {
-    // Only access localStorage on the client
-    const savedLang = typeof window !== 'undefined' ? localStorage.getItem('lang') as Language : null;
+    // Only access localStorage on the client and if it is valid
+    const hasLocalStorage = typeof window !== 'undefined' &&
+      typeof localStorage !== 'undefined' &&
+      typeof localStorage.getItem === 'function';
+
+    const savedLang = hasLocalStorage ? localStorage.getItem('lang') as Language : null;
     if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
       setLang(savedLang);
     }
   }, []);
 
+
   const handleSetLang = (newLang: Language) => {
     setLang(newLang);
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' &&
+      typeof localStorage !== 'undefined' &&
+      typeof localStorage.setItem === 'function') {
       localStorage.setItem('lang', newLang);
     }
   };
+
 
 
   const t = useCallback((key: TranslationKey): string => {
