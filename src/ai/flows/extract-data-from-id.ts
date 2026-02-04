@@ -44,28 +44,25 @@ const prompt = ai.definePrompt({
   name: 'extractDataFromIDPrompt',
   input: { schema: ExtractDataFromIDInputSchema },
   output: { schema: ExtractDataFromIDOutputSchema },
-  prompt: `You are an expert OCR data extraction specialist with advanced capabilities in analyzing identity documents from both front and back sides.
-
-You will extract the following fields from the provided ID document images:
-- full_name
-- document_type: Identify the type of document (e.g., "Cédula de Ciudadanía", "Pasaporte", "Cédula de Extranjería").
-- identification_number: Find the main identification number on the document. It might be labeled as "No.", "DOCUMENTO", "NÚMERO", etc.
-- birthdate_ddmmyyyy
-- nationality_label: The nationality of the person.
-
-Examine both the front and back of the document to gather all required information. The back of the document may contain critical information not visible on the front.
-
-Pay close attention to the 'nationality_label'. If the nationality is not explicitly written, you must deduce it from the context of the document. Analyze visual cues such as flags, logos, symbols, or the issuing country of the document to determine the nationality. For example, if the document is a "Cédula de Ciudadanía" from "República de Colombia", the nationality is "COLOMBIA".
-
-Return the extracted data in JSON format.
-
-Use the following as the primary source of information about the ID document.
-
-Front Photo: {{media url=frontPhotoDataUri}}
-{{#if backPhotoDataUri}}
-Back Photo: {{media url=backPhotoDataUri}}
-{{/if}}
-`,
+  prompt: `You are a highly capable OCR extraction agent. Your task is to extract identity information from images of ID cards or passports.
+  
+  EXTRACT THE FOLLOWING FIELDS:
+  - full_name: The complete name of the person.
+  - document_type: The exact type of document (e.g., Cédula de Ciudadanía, Pasaporte, ID Card).
+  - identification_number: The unique number of the document. Remove any spaces or symbols.
+  - birthdate_ddmmyyyy: The date of birth in DD/MM/YYYY format.
+  - nationality_label: The country of nationality (e.g., COLOMBIA). If not present, infer from the document issuer.
+  
+  INSTRUCTIONS:
+  1. Analyze both the Front and Back photos if provided.
+  2. If a field is illegible or missing, leave it as null or empty string.
+  3. Respond STRICTLY in JSON.
+  
+  Front Photo: {{media url=frontPhotoDataUri}}
+  {{#if backPhotoDataUri}}
+  Back Photo: {{media url=backPhotoDataUri}}
+  {{/if}}
+  `,
 });
 
 const extractDataFromIDFlow = ai.defineFlow(
@@ -75,14 +72,30 @@ const extractDataFromIDFlow = ai.defineFlow(
     outputSchema: ExtractDataFromIDOutputSchema,
   },
   async (input: any) => {
-    console.log('Starting ID data extraction...');
+    console.log('--- START EXTRACTION FLOW ---');
     try {
+      if (!input.frontPhotoDataUri) {
+        throw new Error('Missing front photo data URI');
+      }
+
+      console.log('Sending request to Gemini...');
       const { output } = await prompt(input);
-      console.log('Extraction successful:', JSON.stringify(output, null, 2));
-      return output!;
-    } catch (error) {
-      console.error('Extraction failed:', error);
-      throw error;
+
+      if (!output) {
+        console.error('Gemini returned empty output');
+        throw new Error('AI returned no data');
+      }
+
+      console.log('Extraction completed successfully');
+      return output;
+    } catch (error: any) {
+      console.error('--- EXTRACTION FLOW FAILED ---');
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      if (error.stack) console.error('Stack trace:', error.stack);
+
+      // Re-throw a user-friendly error
+      throw new Error(`AI Extraction Error: ${error.message || 'Unknown error'}`);
     }
   }
 );
