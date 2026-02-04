@@ -36,6 +36,8 @@ const GuestSchema = z.object({
 
 export const FormSchema = z.object({
   property: z.string().min(1, 'errors_required'),
+  checkInDate: z.string().min(1, 'errors_required'),
+  checkOutDate: z.string().min(1, 'errors_required'),
   email: z.string().email('errors_email').min(1, 'errors_required'),
   guests: z.array(GuestSchema).min(1),
   consentEntry: z.boolean().refine(val => val === true, { message: 'errors_consents' }),

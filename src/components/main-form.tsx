@@ -54,6 +54,8 @@ export default function MainForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       property: '',
+      checkInDate: '',
+      checkOutDate: '',
       email: '',
       guests: [defaultGuest],
       consentEntry: false,
@@ -75,8 +77,8 @@ export default function MainForm() {
     let fieldsToValidate: string[] = [];
 
     switch (currentStep) {
-      case 0: // Property & Email
-        fieldsToValidate = ['property', 'email'];
+      case 0: // Property, Dates & Email
+        fieldsToValidate = ['property', 'checkInDate', 'checkOutDate', 'email'];
         break;
       case 1: // ID Scan
         fieldsToValidate = [`guests.${currentGuestIndex}.idFrontUrl`];
@@ -140,6 +142,8 @@ export default function MainForm() {
       consentMig: formValues.consentMig,
       consentDp: formValues.consentDp,
       swornStatement: formValues.swornStatement,
+      checkInDate: formValues.checkInDate,
+      checkOutDate: formValues.checkOutDate,
     }));
 
     // Constructing the exact payload the n8n "Split Huéspedes" node expects

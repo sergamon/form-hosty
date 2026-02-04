@@ -31,7 +31,7 @@ const Step1Property = ({ onNext }: Step1PropertyProps) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-headline font-bold">{t('step_property')}</h2>
-      
+
       <FormField
         control={control}
         name="property"
@@ -56,6 +56,36 @@ const Step1Property = ({ onNext }: Step1PropertyProps) => {
           </FormItem>
         )}
       />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <FormField
+          control={control}
+          name="checkInDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t('field_checkin')}</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={control}
+          name="checkOutDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t('field_checkout')}</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
 
       <FormField
         control={control}

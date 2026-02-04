@@ -15,13 +15,13 @@ interface Step5ReviewProps {
 }
 
 const ReviewItem = ({ label, value }: { label: string; value?: string | number | null }) => {
-    if (!value) return null;
-    return (
-        <div className="flex flex-col sm:flex-row sm:justify-between">
-            <p className="text-sm font-medium text-muted-foreground">{label}</p>
-            <p className="text-sm text-foreground text-right">{value}</p>
-        </div>
-    );
+  if (!value) return null;
+  return (
+    <div className="flex flex-col sm:flex-row sm:justify-between">
+      <p className="text-sm font-medium text-muted-foreground">{label}</p>
+      <p className="text-sm text-foreground text-right">{value}</p>
+    </div>
+  );
 };
 
 
@@ -33,12 +33,14 @@ const Step5Review = ({ onBack, onSubmit, addGuest, editGuest }: Step5ReviewProps
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-headline font-bold">{t('review_summary_title')}</h2>
-      
+
       <Card>
         <CardHeader><CardTitle className="text-lg">{t('field_property')}</CardTitle></CardHeader>
         <CardContent className="space-y-2">
-            <ReviewItem label={t('field_property')} value={formData.property} />
-            <ReviewItem label={t('field_email')} value={formData.email} />
+          <ReviewItem label={t('field_property')} value={formData.property} />
+          <ReviewItem label={t('field_checkin')} value={formData.checkInDate} />
+          <ReviewItem label={t('field_checkout')} value={formData.checkOutDate} />
+          <ReviewItem label={t('field_email')} value={formData.email} />
         </CardContent>
       </Card>
 
@@ -65,8 +67,8 @@ const Step5Review = ({ onBack, onSubmit, addGuest, editGuest }: Step5ReviewProps
 
       <div className="flex justify-center">
         <Button variant="outline" onClick={addGuest}>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            {t('add_guest')}
+          <PlusCircle className="mr-2 h-4 w-4" />
+          {t('add_guest')}
         </Button>
       </div>
 
@@ -75,11 +77,11 @@ const Step5Review = ({ onBack, onSubmit, addGuest, editGuest }: Step5ReviewProps
       <Card>
         <CardHeader><CardTitle className="text-lg">{t('step_consent')}</CardTitle></CardHeader>
         <CardContent className="space-y-2">
-            <p className="text-sm text-foreground">{formData.consentEntry ? '✅' : '❌'} {t('consent_entry')}</p>
-            <p className="text-sm text-foreground">{formData.consentTra ? '✅' : '❌'} {t('consent_tra')}</p>
-            <p className="text-sm text-foreground">{formData.consentMig ? '✅' : '❌'} {t('consent_mig')}</p>
-            <p className="text-sm text-foreground">{formData.consentDp ? '✅' : '❌'} {t('consent_dp')}</p>
-            <p className="text-sm text-foreground">{formData.swornStatement ? '✅' : '❌'} {t('signature')}</p>
+          <p className="text-sm text-foreground">{formData.consentEntry ? '✅' : '❌'} {t('consent_entry')}</p>
+          <p className="text-sm text-foreground">{formData.consentTra ? '✅' : '❌'} {t('consent_tra')}</p>
+          <p className="text-sm text-foreground">{formData.consentMig ? '✅' : '❌'} {t('consent_mig')}</p>
+          <p className="text-sm text-foreground">{formData.consentDp ? '✅' : '❌'} {t('consent_dp')}</p>
+          <p className="text-sm text-foreground">{formData.swornStatement ? '✅' : '❌'} {t('signature')}</p>
         </CardContent>
       </Card>
 
