@@ -27,8 +27,7 @@ const Step6Confirmation = ({ onReset }: Step6ConfirmationProps) => {
               {t('lang') === 'es' ? 'Gracias por completar su registro. Sus datos han sido enviados de forma segura.' : 'Thank you for completing your registration. Your data has been submitted securely.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={() => { /* PDF download logic */ }}>{t('pdf_download')}</Button>
-              <Button variant="outline" onClick={onReset}>{t('new_registration')}</Button>
+              <Button variant="outline" onClick={onReset} className="w-full sm:w-auto">{t('new_registration')}</Button>
             </div>
           </CardContent>
         </Card>

@@ -112,7 +112,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, label, 
 
     return (
         <div className={cn(
-            "relative w-full max-w-md mx-auto overflow-hidden rounded-2xl bg-slate-900 aspect-[4/3] flex flex-col items-center justify-center border-2 border-slate-200/20 shadow-xl transition-all duration-300",
+            "relative w-full max-w-md mx-auto overflow-hidden rounded-2xl bg-slate-900 aspect-[3/4] sm:aspect-[4/3] flex flex-col items-center justify-center border-2 border-slate-200/20 shadow-xl transition-all duration-300",
             className
         )}>
             {/* Hidden File Input */}
