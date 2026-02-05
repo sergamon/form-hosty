@@ -150,6 +150,8 @@ export default function MainForm() {
     // Node logic: const body = item.json.body; ... body.clients ...
     const finalData = {
       ...formValues,
+      checkInDate: formValues.checkInDate,
+      checkOutDate: formValues.checkOutDate,
       clients: preparedClients,
       guests: preparedClients // Maintain both naming conventions just in case
     };
