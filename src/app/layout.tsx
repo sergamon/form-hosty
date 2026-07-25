@@ -19,10 +19,6 @@ if (typeof global !== 'undefined' && (global as any).localStorage && typeof (glo
 export const metadata: Metadata = {
   title: 'Registro y Autorización de Ingreso',
   description: 'Aplicación para el registro de huéspedes y autorización de ingreso.',
-  icons: {
-    icon: '/icon.png',
-    apple: '/apple-icon.png',
-  },
 };
 
 export default function RootLayout({
@@ -33,6 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
