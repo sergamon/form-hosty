@@ -17,10 +17,34 @@ if (typeof global !== 'undefined' && (global as any).localStorage && typeof (glo
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://checkin.hostygroup.com'),
   title: 'Registro y Autorización de Ingreso',
-  description: 'Aplicación para el registro de huéspedes y autorización de ingreso.',
+  description: 'Aplicación para el registro de huéspedes y autorización de ingreso - Hosty',
   icons: {
     icon: 'https://res.cloudinary.com/daauwbhzj/image/upload/v1785022511/icon_k9pxyp.png',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://checkin.hostygroup.com',
+    title: 'Registro y Autorización de Ingreso',
+    description: 'Aplicación para el registro de huéspedes y autorización de ingreso - Hosty',
+    siteName: 'Hosty Check-in',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hosty - Registro y Autorización de Ingreso',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Registro y Autorización de Ingreso',
+    description: 'Aplicación para el registro de huéspedes y autorización de ingreso - Hosty',
+    images: ['/og-image.png'],
+    creator: '@HostyGroup',
   },
 };
 
