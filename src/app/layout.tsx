@@ -20,7 +20,8 @@ export const metadata: Metadata = {
   title: 'Registro y Autorización de Ingreso',
   description: 'Aplicación para el registro de huéspedes y autorización de ingreso.',
   icons: {
-    icon: 'https://res.cloudinary.com/daauwbhzj/image/upload/v1768778493/Hosty_logo_ntehl5_bc77b3.jpg',
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
   },
 };
 
@@ -38,7 +39,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="https://res.cloudinary.com/daauwbhzj/image/upload/v1768778493/Hosty_logo_ntehl5_bc77b3.jpg" />
       </head>
       <body className={cn('font-body antialiased', 'min-h-screen bg-background font-sans')} suppressHydrationWarning>
         <ClientProviders>
